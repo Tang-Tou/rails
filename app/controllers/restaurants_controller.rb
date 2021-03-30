@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   # action
   def index
     @aa = 'hi'
+    render html: 'hello'
   end
   # rails自動會去views找對應的檔案
   # action不做事情 = 沒有執行任何程式
