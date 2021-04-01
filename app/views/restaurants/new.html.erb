@@ -7,22 +7,33 @@
 
 <!-- 預設行為post需要有一個token的欄位 -->
 
-<%= form_for(Restaurant.new) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<%= form_for(@restaurant) do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
 
-  <%= f.label :tel %>
-  <%= f.text_field :tel %>
+  <div class="field">
+    <%= f.label :tel %>
+    <%= f.text_field :tel %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
 
-  <%= f.label :address %>
-  <%= f.text_field :address %>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit '新增'%>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field"><%= f.submit '新增'%></div>
 
 <% end %>
 

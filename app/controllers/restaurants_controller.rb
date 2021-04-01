@@ -1,15 +1,18 @@
 class RestaurantsController < ApplicationController
   # action
   def index
-    @aa = 'hi'
-    render html: 'hello'
+    # @aa = 'hi'
+    # render html: 'hello'
   end
   # rails自動會去views找對應的檔案
   # action不做事情 = 沒有執行任何程式
+  # 如果有render就不會去找view
   def new
+    @restaurant = Restaurant.new
   end
-  
-  def list
+
+
+  def create
     # 寫入資料庫
     # redirect -> 列表頁
     # render html: "title is #{params[:title]}"
