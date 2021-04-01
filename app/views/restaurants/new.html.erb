@@ -8,33 +8,51 @@
 <!-- 預設行為post需要有一個token的欄位 -->
 
 <%= form_for(Restaurant.new) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
-幫某一個model建一個表單
+  <%= f.label :tel %>
+  <%= f.text_field :tel %>
 
-<form action="<%= restaurant_list_path %>" method="post">
-    <input type="hidden"
-           name="authenticity_token"
-           value="<%= form_authenticity_token %>">
-    <label for="title">title</label>
-    <input type="text" name="title" id="title">
-    <br />
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit '新增'%>
+
+<% end %>
+
+<%# 幫某一個model建一個表單 %>
+<%# 上述行為等同下述的html %>
+
+<%# <form action="<%= restaurant_list_path" method="post"> %>
+    <%# <input type="hidden" %>
+           <%# name="authenticity_token" %>
+           <%# value="<%= form_authenticity_token">  %>
+    <%# <label for="title">title</label> %> 
+    <%# <input type="text" name="title" id="title"> %>
+    <%# <br /> %>
   
-    <label for="address">address</label>
-    <input type="text" name="address" id="address">
-    <br />
+    <%# <label for="address">address</label> %>
+    <%# <input type="text" name="address" id="address"> %>
+    <%# <br /> %>
   
-    <label for="tel">tel</label>
-    <input type="tel" name="tel" id="tel">
-    <br />
+    <%# <label for="tel">tel</label> %>
+    <%# <input type="tel" name="tel" id="tel"> %>
+    <%# <br /> %>
   
-    <label for="email">email</label>
-    <input type="email" name="email" id="email">
-    <br />
+    <%# <label for="email">email</label> %>
+    <%# <input type="email" name="email" id="email"> %>
+    <%# <br /> %>
   
-    <label for="description">description</label>
-    <textarea name="description"></textarea>
-    <br />
+    <%# <label for="description">description</label> %>
+    <%# <textarea name="description"></textarea> %>
+    <%# <br /> %>
   
-    <input type="submit" value="新增">
+    <%# <input type="submit" value="新增"> %>
   
-  </form>
+  <%# </form> %>
