@@ -6,6 +6,11 @@
 <!-- 有=有輸出值，沒有=只會單純做運算 -->
 
 <!-- 預設行為post需要有一個token的欄位 -->
+
+<%= form_for(Restaurant.new) do |f| %>
+
+幫某一個model建一個表單
+
 <form action="<%= restaurant_list_path %>" method="post">
     <input type="hidden"
            name="authenticity_token"
