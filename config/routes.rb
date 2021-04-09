@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :restaurants
+  resources :restaurants do
 
-
+    get 'error', :on => :member
+  end
 
 
   # 以下為手刻
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
   # post :restaurant_list, to: 'restaurants#list', path: '/ccc'
   # 得到路徑 指向 叫做rs的c裡面ㄉ叫做index的action 然後
   # path這個方法代表的是他指向的路徑
+
+  # post :restaurant_list, to: 'restaurants#list', path: id: params[:id]
 end
