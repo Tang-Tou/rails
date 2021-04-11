@@ -2,21 +2,26 @@
 
 <%= link_to '新增餐廳', new_restaurant_path %>
 
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li>
-      <%= restaurant.title %>
-      <%= restaurant.address %>
-      <%= restaurant.tel %>
-      <%= restaurant.email %>
-      <%= restaurant.description %>
-        <%= link_to restaurant.title, restaurant_path(restaurant) %>
-        <%= link_to '編輯', edit_restaurant_path(restaurant) %>
-        <%= link_to '刪除', restaurant_path(restaurant), method: 'delete', data: {confirm: '確定刪除?'}  %>
-                                                                        <!-- data confirm是前端的語法 -->
-      </li>
-  <% end %>
-</ul>
 
+<table>
+  <thead>
+    <tr>
+      <td>投票</td>
+      <td>餐廳名稱</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= link_to '投票', vote_restaurant_path(restaurant) %></td>
+      <td><%= restaurant.title %></td>
+      <td><%= link_to '詳細資料', restaurant_path(restaurant) %></td>
+      <td><%= link_to '編輯', edit_restaurant_path(restaurant) %></td>
+      <td><%= link_to '刪除', restaurant_path(restaurant), method: 'delete', data: {confirm: '確定刪除?'}  %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
+
+
 

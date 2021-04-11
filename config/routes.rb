@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :restaurants do
 
-    get 'error', :on => :member
+    member do
+      get :error
+      post :vote
+    end
   end
 
 

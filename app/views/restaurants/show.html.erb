@@ -1,5 +1,11 @@
-<h1><%= @restaurant.title %></h1>
+<h1>餐廳名稱：<%= @restaurant.title %></h1>
 
+      <ul>
+        <li>地址：<%= @restaurant.address %></li>
+        <li>電話：<%= @restaurant.tel %></li>
+        <li>信箱：<%= @restaurant.email %></li>
+        <li>簡介：<%= @restaurant.description %></li>
+      </ul>
 
 
 <%= link_to '回到餐廳列表', restaurants_path %>

@@ -11,6 +11,7 @@ class RestaurantsController < ApplicationController
   def show
     begin
       @restaurant = Restaurant.find(params[:id])  
+      # 使用find_by會錯誤 => 回傳nil
     rescue
 
       redirect_to error_restaurant_path
@@ -30,7 +31,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
 
     if @restaurant.save
-      redirect_to restaurants_path(@restaurant)
+      redirect_to restaurants_path(@restaurant), notice: '成功'
     else
       render :new
     end
@@ -52,7 +53,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find_by(id: params[:id])
 
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant)
+      redirect_to restaurant_path(@restaurant), notice: '編輯成功'
     else
       render :edit  
     end
@@ -61,7 +62,7 @@ class RestaurantsController < ApplicationController
   def destroy
     @restaurant = Restaurant.find_by(id: params[:id])
     @restaurant.destroy
-    redirect_to restaurants_path
+    redirect_to restaurants_path, notice: '刪除成功'
   end
 
   private

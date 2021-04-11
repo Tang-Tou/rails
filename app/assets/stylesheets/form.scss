@@ -5,6 +5,12 @@ form{
   width: 20%;
   .field{
     padding: 5px;
-    
+  }
+}
+.field{
+  .field_with_errors{
+    display: inline-block;
+    color: red;
+    border: 1px solid red;
   }
 }
