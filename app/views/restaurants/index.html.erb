@@ -13,7 +13,7 @@
   <tbody>
     <% @restaurants.each do |restaurant| %>
     <tr>
-      <td><%= link_to '投票', vote_restaurant_path(restaurant) %></td>
+      <td><%= link_to '投票', vote_restaurant_path(restaurant), method: 'post', data: {confirm: '確定投票?'}%></td>
       <td><%= restaurant.title %></td>
       <td><%= link_to '詳細資料', restaurant_path(restaurant) %></td>
       <td><%= link_to '編輯', edit_restaurant_path(restaurant) %></td>
@@ -22,6 +22,5 @@
     <% end %>
   </tbody>
 </table>
-
 
 

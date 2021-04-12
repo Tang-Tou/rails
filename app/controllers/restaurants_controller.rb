@@ -3,7 +3,10 @@ class RestaurantsController < ApplicationController
   def index
     # @aa = 'hi'
     # render html: 'hello'
-    @restaurants = Restaurant.all.order(id: :desc) # 正向排序:asc 反向排序:desc
+    @restaurants = Restaurant.all # 正向排序:asc 反向排序:desc
+    #挑選出沒有標記刪除時間的檔案並做反向排列
+    # @restaurants = Restaurant.where(deleted_at: nil).order(id: :desc) 
+    # @restaurants = Restaurant.deleted
   end
   # rails自動會去views找對應的檔案
   # action不做事情 = 沒有執行任何程式
@@ -14,7 +17,7 @@ class RestaurantsController < ApplicationController
       # 使用find_by會錯誤 => 回傳nil
     rescue
 
-      redirect_to error_restaurant_path
+      redirect_to error_restaurants_path
     end
   end 
 
@@ -62,7 +65,14 @@ class RestaurantsController < ApplicationController
   def destroy
     @restaurant = Restaurant.find_by(id: params[:id])
     @restaurant.destroy
+    # @restaurant.update(deleted_at: Time.now), 
+    # 在model裡建立一個destory的方法做軟刪除, destroy這個方法在上一層找到就不會再往上找到rails內建的刪除方法
     redirect_to restaurants_path, notice: '刪除成功'
+  end
+
+
+  def vote
+     
   end
 
   private

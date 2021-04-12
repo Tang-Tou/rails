@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
   resources :restaurants do
-
     member do
-      get :error
       post :vote
     end
+    collection do
+      get :error
+    end
   end
+
+  resources :users, only: [:create] do 
+    collection do
+      # get :sign_up,controller: 'restaurants' action: 'new'
+      # 可以在後方指定他要去的controller跟action
+      get :sign_up, action: 'new'
+    end
+  end
+
+  root 'restaurant#index'
 
 
   # 以下為手刻
