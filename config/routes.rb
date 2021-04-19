@@ -16,7 +16,15 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'restaurant#index'
+  resources :sessions, path: 'users', only: [] do
+    collection do
+      get :sign_in, action: 'new'
+      post :sign_in, action: 'create'
+      delete :sign_out, action: 'destroy'
+    end
+  end
+
+  root 'restaurants#index'
 
 
   # 以下為手刻

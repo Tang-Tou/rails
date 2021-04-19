@@ -1,6 +1,19 @@
+</br>
+<% if user_sign_in? %>
+  <%= current_user_email %> | 登出
+  <%= link_to '登出', sign_out_session_path, method="delete" %>
+<% else %>
+  <%= link_to '註冊', sign_up_users_path %>
+  <%= link_to '登入', sign_in_sessions_path %>
+<% end %>
+
+
+
 <h1>餐廳列表</h1>
 
 <%= link_to '新增餐廳', new_restaurant_path %>
+</br>
+<%= link_to '註冊帳號', sign_up_users_path %>
 
 
 <table>

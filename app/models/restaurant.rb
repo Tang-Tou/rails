@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   validates :title, presence: true
-  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :email, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
+  belongs_to :user
 
   scope :available, -> { where(deleted_at: nil).order(id: :desc) }
   # default_scope { where(deleted_at: nil) }, 可依照分類需求多做一個
@@ -8,7 +9,7 @@ class Restaurant < ApplicationRecord
   # 有做查詢動作的都會被加上這個scope
 
   # def self.all 
-    # where(deleted_at: nil) where本身會找all, 這樣會造成無窮迴圈 
+    # where(deleted_at: nil) all本身就有在where, 這樣會造成無窮迴圈 
   # end
 
   def self.deleted
@@ -17,13 +18,13 @@ class Restaurant < ApplicationRecord
   end
 
 
-  def destroy
+  def fake_destroy
     update(deleted_at: Time.now) 
   end
 
-  def really_destroy!
-    super.destroy
-    # 跳過同一層往上找destroy
-    # 沒有加super的話會使用到同一層的destory
+  def destroy
+    super
   end
 end
+
+

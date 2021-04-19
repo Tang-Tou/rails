@@ -1,0 +1,22 @@
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 20%;
+}
+
+form .field {
+  padding: 5px;
+}
+
+.field .field_with_errors {
+  display: inline-block;
+  color: red;
+  border: 1px solid red;
+}
+/*# sourceMappingURL=form.css.map */

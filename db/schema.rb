@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_062327) do
+ActiveRecord::Schema.define(version: 2021_04_19_061436) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "title"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2021_04_12_062327) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at"
+    t.integer "user_id"
     t.index ["deleted_at"], name: "index_restaurants_on_deleted_at"
+    t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +35,13 @@ ActiveRecord::Schema.define(version: 2021_04_12_062327) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "vote_logs", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.string "ip_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_vote_logs_on_restaurant_id"
+  end
+
+  add_foreign_key "vote_logs", "restaurants"
 end

@@ -13,8 +13,10 @@ class RestaurantsController < ApplicationController
   # 如果有render就不會去找view
   def show
     begin
-      @restaurant = Restaurant.find(params[:id])  
-      # 使用find_by會錯誤 => 回傳nil
+      @restaurant = Restaurant.find(params[:id]) 
+      # @restaurant = Restaurant.find_by(id: params[:id]) 會回傳nil 不算錯誤
+       
+      # 使用find_by會錯誤 => why
     rescue
 
       redirect_to error_restaurants_path
@@ -64,12 +66,16 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = Restaurant.find_by(id: params[:id])
-    @restaurant.destroy
+    @restaurant.fake_destroy
     # @restaurant.update(deleted_at: Time.now), 
     # 在model裡建立一個destory的方法做軟刪除, destroy這個方法在上一層找到就不會再往上找到rails內建的刪除方法
     redirect_to restaurants_path, notice: '刪除成功'
   end
 
+  def really_destroy!
+    @restaurant = Restaurant.find_by(id: params[:id])  
+    @restaurant.destroy
+  end
 
   def vote
      
