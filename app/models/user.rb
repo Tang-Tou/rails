@@ -3,7 +3,6 @@
 module Hasher
   require 'digest'
   def self.encrypt(password)
-    
     Digest::SHA1.hexdigest(password)
   end
 

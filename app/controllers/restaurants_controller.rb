@@ -1,4 +1,7 @@
 class RestaurantsController < ApplicationController
+before_action :find_restaurant, only: [:edit, :update, :destroy]
+before_action :check_user!, except: [:index, :show]
+
   # action
   def index
     # @aa = 'hi'
@@ -29,11 +32,14 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.new
+    @restaurant = Restaurant.new    
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant.user = current_user
+    # @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurants.new(restaurant_params)
 
     if @restaurant.save
       redirect_to restaurants_path(@restaurant), notice: '成功'
@@ -55,7 +61,6 @@ class RestaurantsController < ApplicationController
   end
 
   def update
-    @restaurant = Restaurant.find_by(id: params[:id])
 
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_path(@restaurant), notice: '編輯成功'
@@ -82,8 +87,22 @@ class RestaurantsController < ApplicationController
   end
 
   private
+
+    def find_restaurant
+      #作法一
+      #@restaurant = Restaurant.find_by!(
+      #  id: params[:id], 
+      #  user_id: current_user.id
+      #)
+
+      #作法二 從使用者的角度去找餐廳
+      @restaurant = current_user.restaurants.find(params[:id])
+    end
+
     def restaurant_params
       params.require(:restaurant).permit(:title, :address, :tel, :email, :description)
     end
+
+    
 
 end
