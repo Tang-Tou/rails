@@ -15,6 +15,11 @@ before_action :check_user!, except: [:index, :show]
   # action不做事情 = 沒有執行任何程式
   # 如果有render就不會去找view
   def show
+    @restaurant = Restaurant.find(params[:id])
+    @comment = @restaurant.comments.new
+    @comments = @restaurant.comments.order(id: :desc)
+
+
     begin
       @restaurant = Restaurant.find(params[:id]) 
       # @restaurant = Restaurant.find_by(id: params[:id]) 會回傳nil 不算錯誤
@@ -32,7 +37,8 @@ before_action :check_user!, except: [:index, :show]
   end
 
   def new
-    @restaurant = Restaurant.new    
+    @restaurant = Restaurant.find(params[:id])
+    @comment = @restaurant.comments.new
   end
 
   def create

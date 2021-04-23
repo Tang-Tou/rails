@@ -1,11 +1,15 @@
-<h1>餐廳名稱：<%= @restaurant.title %></h1>
-
-      <ul>
-        <li>地址：<%= @restaurant.address %></li>
-        <li>電話：<%= @restaurant.tel %></li>
-        <li>信箱：<%= @restaurant.email %></li>
-        <li>簡介：<%= @restaurant.description %></li>
-      </ul>
-
-
+<h1><%= @restaurant.title %></h1>
 <%= link_to '回到餐廳列表', restaurants_path %>
+
+<h3>留言</h3>
+<%= form_for(@comment, url: restaurant_comments_path(@restaurant)) do |form| %>
+  <div class="field">
+    <%= form.label :content, '留言內容' %>
+    <%= form.text_area :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <li><%= comment.content %></li>
+<% end %>

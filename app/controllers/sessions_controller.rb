@@ -11,8 +11,6 @@ class SessionsController < ApplicationController
       #發號碼牌
       #會拿這個號碼牌做驗證
       session[ENV['session_name']] = user.id
-      
-      
       #轉去首頁
       redirect_to root_path
     else

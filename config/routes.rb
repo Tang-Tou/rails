@@ -5,8 +5,13 @@ Rails.application.routes.draw do
     end
     collection do
       get :error
-    end
+    end 
+    resources :comments, shallow: true,
+    only: [:create, :destroy]
+# resources :comments, only: [:index, :new, :create]
   end
+# resources :comments, except: [:index, :new, :create]
+
 
   resources :users, only: [:create] do 
     collection do

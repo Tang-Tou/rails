@@ -3,6 +3,7 @@ class Restaurant < ApplicationRecord
   validates :email, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
   belongs_to :user# , optional: true
   # rails5 之後 belongs_to會自動變成必填(optional :false)，如果想改成可寫可不寫就加上 optional: true
+  has_many :comments
 
   scope :available, -> { where(deleted_at: nil).order(id: :desc) }
   # default_scope { where(deleted_at: nil) }, 可依照分類需求多做一個
