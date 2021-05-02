@@ -11,3 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// import '../form.scss'
+// import './tailwind.css'
+import 'fronted'
+import 'styles'
+import 'icon/fontawesome'
+
+// import '@fortawesome/fontawesome-free'
+

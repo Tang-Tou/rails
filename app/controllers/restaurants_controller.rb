@@ -37,8 +37,8 @@ before_action :check_user!, except: [:index, :show]
   end
 
   def new
-    @restaurant = Restaurant.find(params[:id])
-    @comment = @restaurant.comments.new
+    @restaurant = Restaurant.new
+    # @comment = @restaurant.comments.new
   end
 
   def create
@@ -69,7 +69,7 @@ before_action :check_user!, except: [:index, :show]
   def update
 
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path(@restaurant), notice: '編輯成功'
+      redirect_to restaurants_path(@restaurant), notice: '編輯成功'
     else
       render :edit  
     end
